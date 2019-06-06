@@ -6,13 +6,13 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/06/04 12:15:01 by kemethen         ###   ########.fr        #
+#    Updated: 2019/06/06 16:03:07 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 CC		= gcc
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror -g3
 SRCDIR	= srcs
 OBJDIR	= obj
 LIBDIR	= libft
@@ -20,7 +20,9 @@ INCDIR	= $(LIBDIR)
 
 HEAD	= $(SRCDIR)/push_swap.h
 
-SRC		= 
+SRC		= checker.c \
+		get_next_line.c \
+		push.c
 
 CFLAGS += -I$(INCDIR)
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
