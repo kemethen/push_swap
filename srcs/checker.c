@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/06/06 19:16:54 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:47:10 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,19 @@ int		set_stack(t_stack *s, char **av)
 
 	i = ft_tabsize(av);
 	j = 0;
-	if (!(s->a = (char **)malloc(sizeof(char *) * (sizeof(i + 1)))))
+	if (!(s->a = (char **)malloc(sizeof(char *) * (sizeof(i)))))
 		return (-1);
-	while (j < i)
+	while (j < i - 1)
 	{
-		s->a[j] = av[j + 1];
+		s->a[j] = ft_strdup(av[j + 1]);
 		++j;
 	}
 	s->a[j] = NULL;
-	if (!(s->b = (char **)malloc(sizeof(char *) * ft_tabsize(s->a) + 1)))
-		return (0);
+	if (!(s->b = (char **)malloc(sizeof(char *) * (j + 1))))
+		return (-1);
 	i = 0;
 	while (i < j)
 		s->b[i++] = NULL;
-	ft_displaytab(s->a);
 	return (1);
 }
 
@@ -41,18 +40,24 @@ void	swap_b(t_stack *s)
 {
 	char	*tmp;
 
-	tmp = s->b[0];
-	s->b[0] = s->b[1];
-	s->b[1] = tmp;
+	if (s->b[1] != NULL)
+	{
+		tmp = s->b[0];
+		s->b[0] = s->b[1];
+		s->b[1] = tmp;
+	}
 }
 
 void	swap_a(t_stack *s)
 {
 	char	*tmp;
 
-	tmp = s->a[0];
-	s->a[0] = s->a[1];
-	s->a[1] = tmp;
+	if (s->a[1] != NULL)
+	{
+		tmp = s->a[0];
+		s->a[0] = s->a[1];
+		s->a[1] = tmp;
+	}
 }
 
 int		checkline(char *line, t_stack *s)
@@ -72,7 +77,11 @@ int		checkline(char *line, t_stack *s)
 		push_a(s);
 	else if (line[0] == 'p' && line[1] == 'b' && (!(line[2])) && s->a[0])
 		push_b(s);
-	ft_displaytab(s->a);
+	else if (line[0] == 'r' && line[1] == 'a' && (!(line[2])) && s->a[0])
+		rotate_a(s);
+	else if (line[0] == 'r' && line[1] == 'b' && (!(line[2])) && s->b[0])
+		rotate_b(s);
+	checkline2(line, s);
 	return (1);
 }
 
@@ -100,6 +109,10 @@ int		main(int ac, char **av)
 		{
 			check = checkline(line, s);
 			free(line);
+			ft_putstr("Stack A --------------------------------------------\n");
+			ft_displaytab(s->a);
+			ft_putstr("Stack B --------------------------------------------\n");
+			ft_displaytab(s->b);
 		}
 	}
 	ft_putstr("OK\n");

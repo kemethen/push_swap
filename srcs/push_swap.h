@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:15:23 by kemethen          #+#    #+#             */
-/*   Updated: 2019/06/06 19:11:08 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:47:07 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@
 # include "../libft/libft.h"
 
 int		main(int ac, char **av);
+void	checkline2(char *line, t_stack *s);
 int		get_next_line(int const fd, char **line);
 void	push_a(t_stack *s);
 void	push_b(t_stack *s);
+void	rotate_a(t_stack *s);
+void	rotate_b(t_stack *s);
+void	reverse_rotate_a(t_stack *s);
+void	reverse_rotate_b(t_stack *s);
 
 #endif
