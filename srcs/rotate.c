@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:18:29 by kemethen          #+#    #+#             */
-/*   Updated: 2019/06/11 17:47:09 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/06/18 18:40:53 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	reverse_rotate_a(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 	size_t	i;
 
-	i = ft_tabsize(s->a) - 1;
+	i = s->tabsize_a - 1;
 	tmp = s->a[i];
 	while (i > 0)
 	{
@@ -29,10 +29,10 @@ void	reverse_rotate_a(t_stack *s)
 
 void	reverse_rotate_b(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 	size_t	i;
 
-	i = ft_tabsize(s->b) - 1;
+	i = s->tabsize_b - 1;
 	tmp = s->b[i];
 	while (i > 0)
 	{
@@ -44,27 +44,27 @@ void	reverse_rotate_b(t_stack *s)
 
 void	rotate_a(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 	size_t	i;
 
 	tmp = s->a[0];
 	i = 0;
-	while (s->a[i] != NULL)
+	while (i < s->tabsize_a)
 	{
 		s->a[i] = s->a[i + 1];
-		i++;
+		++i;
 	}
 	s->a[i - 1] = tmp;
 }
 
 void	rotate_b(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 	size_t	i;
 
 	tmp = s->b[0];
 	i = 0;
-	while (s->b[i] != NULL)
+	while (i < s->tabsize_b)
 	{
 		s->b[i] = s->b[i + 1];
 		i++;

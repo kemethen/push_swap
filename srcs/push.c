@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:09:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/06/11 17:47:12 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:39:32 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	fill_a(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 	size_t	i;
 
 	tmp = s->b[0];
-	i = ft_tabsize(s->a);
-	s->a[i + 1] = NULL;
+	i = s->tabsize_a;
 	while (i > 0)
 	{
 		s->a[i] = s->a[i - 1];
@@ -30,12 +29,11 @@ void	fill_a(t_stack *s)
 
 void	fill_b(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 	size_t	i;
 
 	tmp = s->a[0];
-	i = ft_tabsize(s->b);
-	s->b[i + 1] = NULL;
+	i = s->tabsize_b;
 	while (i > 0)
 	{
 		s->b[i] = s->b[i - 1];
@@ -48,30 +46,34 @@ void	push_a(t_stack *s)
 {
 	size_t	i;
 
-	if (s->a[0] == NULL)
+	if (s->tabsize_a == 0)
 		s->a[0] = s->b[0];
 	else
 		fill_a(s);
 	i = 0;
-	while (i < ft_tabsize(s->b))
+	while (i < s->tabsize_b)
 	{
 		s->b[i] = s->b[i + 1];
 		++i;
 	}
+	s->tabsize_a++;
+	s->tabsize_b--;
 }
 
 void	push_b(t_stack *s)
 {
 	size_t	i;
 
-	if (s->b[0] == NULL)
+	if (s->tabsize_b == 0)
 		s->b[0] = s->a[0];
 	else
 		fill_b(s);
 	i = 0;
-	while (i < ft_tabsize(s->a))
+	while (i < s->tabsize_a)
 	{
 		s->a[i] = s->a[i + 1];
 		++i;
 	}
+	s->tabsize_a--;
+	s->tabsize_b++;
 }

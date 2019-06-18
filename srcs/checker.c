@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/06/11 17:47:10 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/06/18 18:52:03 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,31 @@ int		set_stack(t_stack *s, char **av)
 {
 	size_t	i;
 	size_t	j;
+	size_t	k;
 
-	i = ft_tabsize(av);
+	i = ft_tabsize(av) - 1;
 	j = 0;
-	if (!(s->a = (char **)malloc(sizeof(char *) * (sizeof(i)))))
+	k = 1;
+	if (!(s->a = (int *)malloc(sizeof(int) * i)))
 		return (-1);
-	while (j < i - 1)
+	s->tabsize_a = i;
+	s->tabsize_b = 0;
+	if (!(s->b = (int *)malloc(sizeof(int) * i)))
+		return (-1);
+	while (j < i)
 	{
-		s->a[j] = ft_strdup(av[j + 1]);
+		s->a[j] = ft_atoi(av[k]);
 		++j;
+		++k;
 	}
-	s->a[j] = NULL;
-	if (!(s->b = (char **)malloc(sizeof(char *) * (j + 1))))
-		return (-1);
-	i = 0;
-	while (i < j)
-		s->b[i++] = NULL;
 	return (1);
 }
 
 void	swap_b(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 
-	if (s->b[1] != NULL)
+	if (s->tabsize_b > 1)
 	{
 		tmp = s->b[0];
 		s->b[0] = s->b[1];
@@ -50,9 +51,9 @@ void	swap_b(t_stack *s)
 
 void	swap_a(t_stack *s)
 {
-	char	*tmp;
+	int		tmp;
 
-	if (s->a[1] != NULL)
+	if (s->tabsize_a > 1)
 	{
 		tmp = s->a[0];
 		s->a[0] = s->a[1];
@@ -64,22 +65,22 @@ int		checkline(char *line, t_stack *s)
 {
 	if (ft_strlen(line) <= 1 || ft_strlen(line) > 3)
 		return (0);
-	else if (line[0] == 's' && line[1] == 'a' && (!(line[2])))
+	else if (!(ft_strcmp(line, "sa")))
 		swap_a(s);
-	else if (line[0] == 's' && line[1] == 'b' && (!(line[2])) && s->b[0])
+	else if (!(ft_strcmp(line, "sb")) && s->tabsize_b > 0)
 		swap_b(s);
-	else if (line[0] == 's' && line[1] == 's' && (!(line[2])))
+	else if (!(ft_strcmp(line, "ss")))
 	{
 		swap_a(s);
 		swap_b(s);
 	}
-	else if (line[0] == 'p' && line[1] == 'a' && (!(line[2])) && s->b[0])
+	else if (!(ft_strcmp(line, "pa")) && s->tabsize_b > 0)
 		push_a(s);
-	else if (line[0] == 'p' && line[1] == 'b' && (!(line[2])) && s->a[0])
+	else if (!(ft_strcmp(line, "pb")) && s->tabsize_a > 0)
 		push_b(s);
-	else if (line[0] == 'r' && line[1] == 'a' && (!(line[2])) && s->a[0])
+	else if (!(ft_strcmp(line, "ra")))
 		rotate_a(s);
-	else if (line[0] == 'r' && line[1] == 'b' && (!(line[2])) && s->b[0])
+	else if (!(ft_strcmp(line, "rb")))
 		rotate_b(s);
 	checkline2(line, s);
 	return (1);
@@ -110,11 +111,17 @@ int		main(int ac, char **av)
 			check = checkline(line, s);
 			free(line);
 			ft_putstr("Stack A --------------------------------------------\n");
-			ft_displaytab(s->a);
+			ft_displaytabint(s->a, s->tabsize_a);
 			ft_putstr("Stack B --------------------------------------------\n");
-			ft_displaytab(s->b);
+			ft_displaytabint(s->b, s->tabsize_b);
 		}
 	}
-	ft_putstr("OK\n");
+	if (checktab(s))
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
+	free(s->a);
+	free(s->b);
+	free(s);
 	return (0);
 }
