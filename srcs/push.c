@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:09:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/06/18 15:39:32 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:33:23 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	push_a(t_stack *s)
 	}
 	s->tabsize_a++;
 	s->tabsize_b--;
+	if (s->write == 1)
+		ft_putstr("pa\n");
 }
 
 void	push_b(t_stack *s)
@@ -76,4 +78,6 @@ void	push_b(t_stack *s)
 	}
 	s->tabsize_a--;
 	s->tabsize_b++;
+	if (s->write == 1)
+		ft_putstr("pb\n");
 }

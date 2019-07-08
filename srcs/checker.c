@@ -6,12 +6,11 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/06/18 18:52:03 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/07/08 17:17:10 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int		set_stack(t_stack *s, char **av)
 {
@@ -26,6 +25,7 @@ int		set_stack(t_stack *s, char **av)
 		return (-1);
 	s->tabsize_a = i;
 	s->tabsize_b = 0;
+	s->write = 0;
 	if (!(s->b = (int *)malloc(sizeof(int) * i)))
 		return (-1);
 	while (j < i)
@@ -47,6 +47,8 @@ void	swap_b(t_stack *s)
 		s->b[0] = s->b[1];
 		s->b[1] = tmp;
 	}
+	if (s->write == 1)
+		ft_putstr("sb\n");
 }
 
 void	swap_a(t_stack *s)
@@ -59,6 +61,8 @@ void	swap_a(t_stack *s)
 		s->a[0] = s->a[1];
 		s->a[1] = tmp;
 	}
+	if (s->write == 1 && s->both == 0)
+		ft_putstr("sa\n");
 }
 
 int		checkline(char *line, t_stack *s)
@@ -71,8 +75,12 @@ int		checkline(char *line, t_stack *s)
 		swap_b(s);
 	else if (!(ft_strcmp(line, "ss")))
 	{
+		s->both = 1;
 		swap_a(s);
 		swap_b(s);
+		if (s->write == 1)
+			ft_putstr("ss\n");
+		s->both = 0;
 	}
 	else if (!(ft_strcmp(line, "pa")) && s->tabsize_b > 0)
 		push_a(s);
@@ -86,20 +94,19 @@ int		checkline(char *line, t_stack *s)
 	return (1);
 }
 
-int		main(int ac, char **av)
+void	checker(char **av)
 {
 	int		ret;
 	int		check;
 	char	*line;
 	t_stack	*s;
 
-	(void)ac;
 	s = ft_memalloc(sizeof(t_stack));
 	ft_bzero(s, sizeof(t_stack));
 	if ((set_stack(s, av)) == -1)
 	{
 		ft_putstr("KO\n");
-		return (0);
+		return ;
 	}
 	ret = 1;
 	check = 1;
@@ -123,5 +130,4 @@ int		main(int ac, char **av)
 	free(s->a);
 	free(s->b);
 	free(s);
-	return (0);
 }

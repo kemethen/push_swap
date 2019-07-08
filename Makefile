@@ -6,15 +6,18 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/06/11 17:47:08 by kemethen         ###   ########.fr        #
+#    Updated: 2019/07/08 16:24:59 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= push_swap
+NAME	= checker
+NAME2	= push_swap
 CC		= gcc
 CFLAGS += -Wall -Wextra -Werror
 SRCDIR	= srcs
+SRCDIR2	= srcs2
 OBJDIR	= obj
+OBJDIR2	= obj2
 LIBDIR	= libft
 INCDIR	= $(LIBDIR)
 
@@ -23,11 +26,17 @@ HEAD	= $(SRCDIR)/push_swap.h
 SRC		= checker.c \
 		checkline.c \
 		get_next_line.c \
+		main2.c \
 		push.c \
-		rotate.c
+		rotate.c 
+
+SRC2	= main.c \
+		move_median.c \
+		push_swap.c 
 
 CFLAGS += -I$(INCDIR)
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+OBJ2	= $(addprefix $(OBJDIR2)/,$(SRC2:.c=.o))
 LIB		= $(LIBDIR)/libft.a
 
 GREEN	= \033[1;32m
@@ -37,9 +46,14 @@ YELLOW	= \033[1;33m
 BLUE	= \033[1;36m
 WHITE	= \033[1;37m
 
-all: $(NAME)
+all: $(NAME) $(NAME2)
 
 $(NAME): $(LIB) $(OBJ)
+	@echo "\n$(GREEN)Compiling\t$(YELLOW)$@ $(WHITE)with $^"
+	@$(CC) -o $@ $^
+	@echo "$@  \t[$(GREEN)✓$(WHITE)]"
+
+$(NAME2): $(LIB) $(OBJ2)
 	@echo "\n$(GREEN)Compiling\t$(YELLOW)$@ $(WHITE)with $^"
 	@$(CC) -o $@ $^
 	@echo "$@  \t[$(GREEN)✓$(WHITE)]"
@@ -59,8 +73,8 @@ $(OBJDIR):
 
 clean:
 	@make -C $(LIBDIR) clean
-	@echo "$(RED)Deleting\t$(WHITE)directory $(BLUE)'$(OBJDIR)'"
-	@rm -rf $(OBJDIR)
+	@echo "$(RED)Deleting\t$(WHITE)directory $(BLUE)'$(OBJDIR) & $(OBJDIR2)'"
+	@rm -rf $(OBJDIR) $(OBJDIR2)
 
 fclean: clean
 	@make -C $(LIBDIR) fclean
