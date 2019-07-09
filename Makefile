@@ -6,7 +6,7 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/07/08 16:24:59 by kemethen         ###   ########.fr        #
+#    Updated: 2019/07/09 11:17:48 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,7 @@ NAME2	= push_swap
 CC		= gcc
 CFLAGS += -Wall -Wextra -Werror
 SRCDIR	= srcs
-SRCDIR2	= srcs2
 OBJDIR	= obj
-OBJDIR2	= obj2
 LIBDIR	= libft
 INCDIR	= $(LIBDIR)
 
@@ -26,17 +24,22 @@ HEAD	= $(SRCDIR)/push_swap.h
 SRC		= checker.c \
 		checkline.c \
 		get_next_line.c \
-		main2.c \
+		main.c \
 		push.c \
 		rotate.c 
 
-SRC2	= main.c \
+SRC2	= median.c \
+		checker.c \
+		checkline.c \
+		get_next_line.c \
 		move_median.c \
-		push_swap.c 
+		push.c \
+		push_swap.c \
+		rotate.c
 
 CFLAGS += -I$(INCDIR)
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
-OBJ2	= $(addprefix $(OBJDIR2)/,$(SRC2:.c=.o))
+OBJ2	= $(addprefix $(OBJDIR)/,$(SRC2:.c=.o))
 LIB		= $(LIBDIR)/libft.a
 
 GREEN	= \033[1;32m

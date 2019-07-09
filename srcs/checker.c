@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/08 17:17:10 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/07/09 11:44:56 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,7 @@ int		checkline(char *line, t_stack *s)
 	else if (!(ft_strcmp(line, "sb")) && s->tabsize_b > 0)
 		swap_b(s);
 	else if (!(ft_strcmp(line, "ss")))
-	{
-		s->both = 1;
-		swap_a(s);
-		swap_b(s);
-		if (s->write == 1)
-			ft_putstr("ss\n");
-		s->both = 0;
-	}
+		swap_both(s);
 	else if (!(ft_strcmp(line, "pa")) && s->tabsize_b > 0)
 		push_a(s);
 	else if (!(ft_strcmp(line, "pb")) && s->tabsize_a > 0)

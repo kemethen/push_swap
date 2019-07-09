@@ -6,44 +6,16 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 11:03:04 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/08 17:57:47 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/07/09 17:50:32 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/push_swap.h"
-
-int		median(int *t1, int size)
-{
-	int		*t2;
-	int		i;
-	int		tmp;
-
-	i = 1;
-	t2 = ft_tabdupint(t1, size);
-	while (i < size)
-	{
-		if (t2[i - 1] > t2[i])
-		{
-			tmp = t2[i - 1];
-			t2[i - 1] = t2[i];
-			t2[i] = tmp;
-			i = 0;
-		}
-		i++;
-	}
-	ft_putstr("TAB DUP --------------------------------------------\n");
-	ft_displaytabint(t2, size);
-	i = size / 2;
-	tmp = t2[i];
-	ft_printf("TMP = %d\n", tmp);
-	free(t2);
-	return (tmp);
-}
+#include "push_swap.h"
 
 void	split_stack(t_stack *s)
 {
 	int		med;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	med = median(s->a, s->tabsize_a);
@@ -55,12 +27,17 @@ void	split_stack(t_stack *s)
 		to_top(s, i);
 	while (s->a[0] != med)
 	{
+	//	display_stacks(s);
 		if (s->a[0] < med)
+		{
 			push_b(s);
+			if (s->b[0] < s->b[1])
+				rotate_b(s);
+		}
 		else
 			rotate_a(s);
 	}
-//	quicksort(s);
+	quicksort(s);
 }
 
 void	push_swap_three(t_stack *s)
@@ -113,9 +90,16 @@ int		push_swap(char **av)
 		push_swap_three(s);
 	else
 		split_stack(s);
-	ft_putstr("Stack A --------------------------------------------\n");
-	ft_displaytabint(s->a, s->tabsize_a);
-	ft_putstr("Stack B --------------------------------------------\n");
-	ft_displaytabint(s->b, s->tabsize_b);
+//	display_stacks(s);
+	free(s->a);
+	free(s->b);
+	free(s);
+	return (0);
+}
+
+int		main(int ac, char **av)
+{
+	(void)ac;
+	push_swap(av);
 	return (0);
 }

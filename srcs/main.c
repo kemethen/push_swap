@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 16:55:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/08 11:58:53 by kemethen         ###   ########.fr       */
+/*   Created: 2019/07/08 12:31:28 by kemethen          #+#    #+#             */
+/*   Updated: 2019/07/09 11:03:26 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/push_swap.h"
+#include "push_swap.h"
 
 int		main(int ac, char **av)
 {
 	(void)ac;
-	push_swap(av);
+	checker(av);
 	return (0);
 }
