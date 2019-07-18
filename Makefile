@@ -6,7 +6,7 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/07/09 11:17:48 by kemethen         ###   ########.fr        #
+#    Updated: 2019/07/18 15:13:51 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC2	= median.c \
 		checker.c \
 		checkline.c \
 		get_next_line.c \
+		move_max.c \
 		move_median.c \
 		push.c \
 		push_swap.c \
@@ -76,13 +77,13 @@ $(OBJDIR):
 
 clean:
 	@make -C $(LIBDIR) clean
-	@echo "$(RED)Deleting\t$(WHITE)directory $(BLUE)'$(OBJDIR) & $(OBJDIR2)'"
-	@rm -rf $(OBJDIR) $(OBJDIR2)
+	@echo "$(RED)Deleting\t$(WHITE)directory $(BLUE)'$(OBJDIR)"
+	@rm -rf $(OBJDIR)
 
 fclean: clean
 	@make -C $(LIBDIR) fclean
-	@echo "$(RED)Deleting\t$(YELLOW)$(NAME)\n"
-	@rm -f $(NAME)
+	@echo "$(RED)Deleting\t$(YELLOW)$(NAME) & $(NAME2)\n"
+	@rm -f $(NAME) $(NAME2)
 
 re: fclean all
 

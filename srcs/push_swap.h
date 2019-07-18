@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:15:23 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/09 17:48:40 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/07/18 18:10:08 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	reverse_rotate_b(t_stack *s);
 int		checktab(t_stack *s);
 int		set_stack(t_stack *s, char **av);
 int		push_swap(char **av);
-void	to_bottom(t_stack *s, size_t i);
-void	to_top(t_stack *s, int i);
 void	quicksort(t_stack *s);
 int		median(int *t1, int size);
 void	swap_both(t_stack *s);
@@ -39,5 +37,9 @@ void	rotate(t_stack *s);
 void	reverse_rotate(t_stack *s);
 void	display_stacks(t_stack *s);
 void	reverse_rotate_both(t_stack *s);
+void	to_bottom_max(t_stack *s, int max);
+void	to_top_max(t_stack *s, int max);
+int		last_three(t_stack *s);
+int		find_max(int *tab, int size);
 
 #endif
