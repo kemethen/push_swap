@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:24:08 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/18 18:09:59 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/21 19:17:56 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	display_stacks(t_stack *s)
 	ft_putstr("-------------------------------------STACK-B-------------------------------------\n");
 }
 
-void	quicksort(t_stack *s)
+void	sort(t_stack *s)
 {
 	size_t	max;
 	size_t	i;
@@ -70,7 +70,6 @@ void	quicksort(t_stack *s)
 	{
 		max = find_max(s->b, s->tabsize_b);
 		i = find_max_index(s->b, s->tabsize_b);
-	//	ft_printf("max = %d\n", max);
 		if (i > s->tabsize_b / 2 - 1)
 		{
 			to_bottom_max(s, max);

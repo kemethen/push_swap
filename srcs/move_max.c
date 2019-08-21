@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:09:44 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/18 18:03:24 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/21 16:54:16 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		last_three(t_stack *s)
 			z = s->a[i];
 		++i;
 	}
-//	ft_printf("x = %d     y = %d     z = %d\n", x, y, z);
 	return (z);
 }
 

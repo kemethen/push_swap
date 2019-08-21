@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 11:03:04 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/18 18:13:39 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/21 19:17:59 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,41 +40,39 @@ void	push_swap_three(t_stack *s)
 
 void	split_stack(t_stack *s)
 {
-	int		max;
 	int		med;
 	size_t	i;
 
 	i = s->tabsize_a / 2 - 3;
-	max = last_three(s);
 	med = median(s->a, s->tabsize_a);
 	while (i < s->tabsize_a)
 	{
-		if (s->a[0] < max && s->a[0] < med)
+		if (s->a[0] < med)
 		{
 			push_b(s);
+			if (s->tabsize_b > 1)
+				sort_b(s);
 			++i;
 		}
 		else
 			rotate_a(s);
 	}
-//	ft_putstr("PREMIERE PARTIE\n");
-//	display_stacks(s);
 	while (s->tabsize_a > 3)
 	{
-		med = median(s->b, s->tabsize_b);
-		if (s->a[0] < max)
+		med = median(s->a, s->tabsize_a);
+		if (s->a[0] < med)
 		{
 			push_b(s);
-			if (s->b[0] < med)
+			if (s->b[0] > s->b[1])
 				rotate_b(s);
 		}
 		else
 			rotate_a(s);
 	}
 	push_swap_three(s);
-//	ft_putstr("AVANT LE SORT\n");
+	sort(s);
+//	ft_putstr("APRES LE SORT\n");
 //	display_stacks(s);
-	quicksort(s);
 }
 
 void	push_swap_two(t_stack *s)
