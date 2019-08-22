@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:15:23 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/21 19:18:00 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/22 19:29:58 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	rotate_b(t_stack *s);
 void	reverse_rotate_a(t_stack *s);
 void	reverse_rotate_b(t_stack *s);
 int		checktab(t_stack *s);
+void	split_stack(t_stack *s);
 int		set_stack(t_stack *s, char **av);
 int		push_swap(char **av);
+void	push_swap_three(t_stack *s);
 void	sort(t_stack *s);
 int		median(int *t1, int size);
 void	swap_both(t_stack *s);
@@ -42,6 +44,10 @@ void	to_top_max(t_stack *s, int max);
 int		last_three(t_stack *s);
 int		find_max(int *tab, int size);
 int		find_max_index(int *tab, int size);
-void	sort_b(t_stack *s);
+void	sort_b(t_stack *s, int top, int bot, int med);
+int		top_push(int *tab, int med);
+int		bot_push(int *tab, int size, int med);
+int		checktab(t_stack *s);
+void	rotate_both(t_stack *s);
 
 #endif

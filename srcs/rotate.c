@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:18:29 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/21 13:14:14 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/22 19:31:35 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	rotate_a(t_stack *s)
 		++i;
 	}
 	s->a[i - 1] = tmp;
-	if (s->write == 1)
+	if (s->write == 1 && s->both == 0)
 		ft_putstr("ra\n");
 }
 
@@ -76,6 +76,6 @@ void	rotate_b(t_stack *s)
 		i++;
 	}
 	s->b[i - 1] = tmp;
-	if (s->write == 1)
+	if (s->write == 1 && s->both == 0)
 		ft_putstr("rb\n");
 }

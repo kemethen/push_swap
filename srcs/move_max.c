@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:09:44 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/21 16:54:16 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/22 19:20:53 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ void	to_top_max(t_stack *s, int max)
 	//	display_stacks(s);
 	}
 	push_a(s);
+}
+
+int		bot_push(int *tab, int size, int med)
+{
+	int		i;
+
+	i = size - 1;
+	while (tab[i] >= med)
+		--i;
+	return (size - i);
 }

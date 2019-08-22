@@ -6,7 +6,7 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/08/21 19:17:59 by kemethen         ###   ########.fr        #
+#    Updated: 2019/08/22 13:26:05 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,19 @@ SRC		= checker.c \
 		checkline.c \
 		get_next_line.c \
 		main.c \
+		move_median.c \
+		move_max.c \
 		push.c \
 		rotate.c 
 
-SRC2	= median.c \
-		checker.c \
+SRC2	= checker.c \
 		checkline.c \
 		get_next_line.c \
+		median.c \
 		move_max.c \
 		move_median.c \
 		push.c \
-		push_swap.c \
+		pushswap.c \
 		rotate.c
 
 CFLAGS += -I$(INCDIR)
@@ -51,6 +53,10 @@ BLUE	= \033[1;36m
 WHITE	= \033[1;37m
 
 all: $(NAME) $(NAME2)
+
+checker: $(NAME)
+
+push_swap: $(NAME2)
 
 $(NAME): $(LIB) $(OBJ)
 	@echo "\n$(GREEN)Compiling\t$(YELLOW)$@ $(WHITE)with $^"
@@ -87,4 +93,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re $(LIB)
+.PHONY: all clean fclean re checker push_swap $(LIB)

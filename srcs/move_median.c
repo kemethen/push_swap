@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:24:08 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/21 19:17:56 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/22 17:08:39 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int		find_max(int *tab, int size)
 
 void	display_stacks(t_stack *s)
 {
-	ft_putstr("-------------------------------------STACK-A-------------------------------------\n");
+	ft_putstr("---STACK-A--------------------------------------STACK-A--------------------------------------STACK-A---\n");
 	ft_displaytabint(s->a, s->tabsize_a);
-	ft_putstr("-------------------------------------STACK-A-------------------------------------\n");
-	ft_putstr("-------------------------------------STACK-B-------------------------------------\n");
+	ft_putstr("---STACK-A--------------------------------------STACK-A--------------------------------------STACK-A---\n");
+	ft_putstr("---STACK-B--------------------------------------STACK-B--------------------------------------STACK-B---\n");
 	ft_displaytabint(s->b, s->tabsize_b);
-	ft_putstr("-------------------------------------STACK-B-------------------------------------\n");
+	ft_putstr("---STACK-B--------------------------------------STACK-B--------------------------------------STACK-B---\n");
 }
 
 void	sort(t_stack *s)
@@ -71,16 +71,21 @@ void	sort(t_stack *s)
 		max = find_max(s->b, s->tabsize_b);
 		i = find_max_index(s->b, s->tabsize_b);
 		if (i > s->tabsize_b / 2 - 1)
-		{
 			to_bottom_max(s, max);
-//			display_stacks(s);
-		}
 		else
-		{
 			to_top_max(s, max);
-//			display_stacks(s);
-		}
+	//	display_stacks(s);
 	}
 //	ft_putstr("APRES\n");
 //	display_stacks(s);
+}
+
+int		top_push(int *tab, int med)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i] >= med)
+		++i;
+	return (i);
 }

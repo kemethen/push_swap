@@ -6,11 +6,27 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 16:55:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/21 19:17:58 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/22 19:29:39 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		find_min(int *tab, int size)
+{
+	int		x;
+	int		i;
+
+	x = tab[0];
+	i = 0;
+	while (i < size)
+	{
+		if (x > tab[i])
+			x = tab[i];
+		++i;
+	}
+	return (x);
+}
 
 int		median(int *t1, int size)
 {
@@ -53,11 +69,55 @@ int		mean_value(int *t1, int size)
 	return (mv);
 }
 
-void	sort_b(t_stack *s)
+void	sort_b(t_stack *s, int top, int bot, int med)
 {
 	int		mv;
 
 	mv = mean_value(s->b, s->tabsize_b);
-	if (s->b[0] > mv)
-		rotate_b(s);
+	top = top_push(s->a, med);
+	bot = bot_push(s->a, s->tabsize_a, med);
+	if (s->b[0] < mv)
+	{
+		if (top < bot)
+			rotate_both(s);
+		else
+			rotate_b(s);
+	}
+}
+
+void	split_stack(t_stack *s)
+{
+	int		med;
+	int		top;
+	int		bot;
+	int		max;
+
+	max = last_three(s);
+	while (s->tabsize_a > 3)
+	{
+		med = median(s->a, s->tabsize_a);
+//		ft_printf("med = %d\nmax = %d\n", med, max);
+		if (s->a[0] < med && s->a[0] < max)
+		{
+			push_b(s);
+			sort_b(s, top, bot, med);
+//			ft_putstr("APRES LE SORT\n");
+//			display_stacks(s);
+		}
+		top = top_push(s->a, med);
+		bot = bot_push(s->a, s->tabsize_a, med);
+		while (s->a[0] >= med)
+		{
+			if (top > bot)
+				reverse_rotate_a(s);
+			else
+				rotate_a(s);
+		}
+//		ft_putstr("APRES LE ROTATE\n");
+//		display_stacks(s);
+	}
+//	display_stacks(s);
+	push_swap_three(s);
+	sort(s);
+//	display_stacks(s);
 }

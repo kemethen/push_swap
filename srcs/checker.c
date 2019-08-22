@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/07/09 11:44:56 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/22 13:23:21 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ void	checker(char **av)
 		{
 			check = checkline(line, s);
 			free(line);
-			ft_putstr("Stack A --------------------------------------------\n");
-			ft_displaytabint(s->a, s->tabsize_a);
-			ft_putstr("Stack B --------------------------------------------\n");
-			ft_displaytabint(s->b, s->tabsize_b);
+			display_stacks(s);
 		}
 	}
 	if (checktab(s))
