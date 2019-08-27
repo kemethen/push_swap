@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 16:55:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/22 19:29:39 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/08/27 18:39:23 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	split_stack(t_stack *s)
 	int		max;
 
 	max = last_three(s);
+	med = median(s->a, s->tabsize_a);
 	while (s->tabsize_a > 3)
 	{
 		med = median(s->a, s->tabsize_a);
