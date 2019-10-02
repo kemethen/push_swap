@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:15:23 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/27 18:38:26 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/02 13:41:10 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	to_top_max(t_stack *s, int max);
 int		last_three(t_stack *s);
 int		find_max(int *tab, int size);
 int		find_max_index(int *tab, int size);
+int		number_min(int *tab, int size);
 void	sort_b(t_stack *s, int top, int bot, int med);
 int		top_push(int *tab, int med);
 int		bot_push(int *tab, int size, int med);

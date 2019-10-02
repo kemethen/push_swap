@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:24:08 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/27 18:39:27 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:08:30 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	sort(t_stack *s)
 			to_bottom_max(s, max);
 		else
 			to_top_max(s, max);
-	//	display_stacks(s);
+//		display_stacks(s);
 	}
 //	ft_putstr("APRES\n");
 //	display_stacks(s);

@@ -6,11 +6,27 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:09:44 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/27 18:39:25 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:02:19 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		number_min(int *tab, int size)
+{
+	int		x;
+	int		i;
+
+	x = tab[0];
+	i = 0;
+	while (i < size)
+	{
+		if (x > tab[i])
+			x = tab[i];
+		++i;
+	}
+	return (x);
+}
 
 int		last_three(t_stack *s)
 {
@@ -68,5 +84,5 @@ int		bot_push(int *tab, int size, int med)
 	i = size - 1;
 	while (tab[i] >= med)
 		--i;
-	return (size - i);
+	return (tab[i]);
 }
