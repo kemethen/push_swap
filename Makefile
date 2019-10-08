@@ -6,7 +6,7 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/08/22 13:26:05 by kemethen         ###   ########.fr        #
+#    Updated: 2019/10/08 16:18:08 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,19 +23,23 @@ HEAD	= $(SRCDIR)/push_swap.h
 
 SRC		= checker.c \
 		checkline.c \
+		free_stack.c \
 		get_next_line.c \
 		main.c \
-		move_median.c \
 		move_max.c \
+		move_median.c \
+		move.c \
 		push.c \
 		rotate.c 
 
 SRC2	= checker.c \
 		checkline.c \
+		free_stack.c \
 		get_next_line.c \
 		median.c \
 		move_max.c \
 		move_median.c \
+		move.c \
 		push.c \
 		pushswap.c \
 		rotate.c
@@ -69,7 +73,7 @@ $(NAME2): $(LIB) $(OBJ2)
 	@echo "$@  \t[$(GREEN)✓$(WHITE)]"
 
 $(LIB):
-	@make -C $(LIBDIR)
+	@make -j3 -C $(LIBDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 	@echo "$(PURPLE)Updating\t$(WHITE)$@"

@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:15:23 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/02 13:41:10 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:18:56 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+
+typedef struct s_stack
+{
+	int		*a;
+	size_t	tabsize_a;
+	int		*b;
+	size_t	tabsize_b;
+	int		write;
+	int		both;
+	int		ret;
+	int		check;
+	int		max;
+}				t_stack;
 
 int		main(int ac, char **av);
 void	checker(char **av);
@@ -32,6 +45,7 @@ void	split_stack(t_stack *s);
 int		set_stack(t_stack *s, char **av);
 int		push_swap(char **av);
 void	push_swap_three(t_stack *s);
+void	sort_a(t_stack *s);
 void	sort(t_stack *s);
 int		median(int *t1, int size);
 void	swap_both(t_stack *s);
@@ -44,11 +58,13 @@ void	to_top_max(t_stack *s, int max);
 int		last_three(t_stack *s);
 int		find_max(int *tab, int size);
 int		find_max_index(int *tab, int size);
+int		find_med_index(int *tab, int med);
 int		number_min(int *tab, int size);
 void	sort_b(t_stack *s, int top, int bot, int med);
 int		top_push(int *tab, int med);
 int		bot_push(int *tab, int size, int med);
 int		checktab(t_stack *s);
 void	rotate_both(t_stack *s);
+void	free_stack(t_stack *s);
 
 #endif

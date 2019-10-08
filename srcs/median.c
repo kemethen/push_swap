@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 16:55:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/02 17:08:46 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:18:53 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	sort_b(t_stack *s, int top, int bot, int med)
 	bot = bot_push(s->a, s->tabsize_a, med);
 	if (s->b[0] < mv)
 	{
-		if (top < bot)
+		if (top < bot && s->a[0] > med)
 			rotate_both(s);
 		else
 			rotate_b(s);
@@ -90,41 +90,15 @@ void	split_stack(t_stack *s)
 	int		med;
 	int		top;
 	int		bot;
-	int		max;
-	size_t	i = s->tabsize_a / 2;
 
-	max = last_three(s);
-	med = median(s->a, s->tabsize_a);
-	while (i < s->tabsize_a)
-	{
-		if (s->a[0] < med && s->a[0] < max)
-			{
-				push_b(s);
-				sort_b(s, top, bot, med);
-	//			ft_putstr("APRES LE SORT\n");
-	//			display_stacks(s);
-			}
-			top = top_push(s->a, med);
-			bot = bot_push(s->a, s->tabsize_a, med);
-			while (s->a[0] >= med && i < s->tabsize_a)
-			{
-				if (top > bot)
-					reverse_rotate_a(s);
-				else
-					rotate_a(s);
-			}			
-//			display_stacks(s);
-	}
+	s->max = last_three(s);
 	while (s->tabsize_a > 3)
 	{
 		med = median(s->a, s->tabsize_a);
-//		ft_printf("med = %d\nmax = %d\n", med, max);
-		if (s->a[0] < med && s->a[0] < max)
+		if (s->a[0] < med && s->a[0] < s->max)
 		{
 			push_b(s);
 			sort_b(s, top, bot, med);
-//			ft_putstr("APRES LE SORT\n");
-//			display_stacks(s);
 		}
 		top = top_push(s->a, med);
 		bot = bot_push(s->a, s->tabsize_a, med);
@@ -135,12 +109,7 @@ void	split_stack(t_stack *s)
 			else
 				rotate_a(s);
 		}
-//		ft_putstr("APRES LE ROTATE\n");
-	//	display_stacks(s);
 	}
 	push_swap_three(s);
-//	display_stacks(s);
 	sort(s);
-//	display_stacks(s);
 }
-    

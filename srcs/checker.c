@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/01 14:34:18 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:54:21 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ int		set_stack(t_stack *s, char **av)
 	s->tabsize_a = i;
 	s->tabsize_b = 0;
 	s->write = 0;
+	s->ret = 1;
+	s->check = 1;
 	if (!(s->b = (int *)malloc(sizeof(int) * i)))
 		return (-1);
 	while (j < i)
 	{
+		if (ft_atoi(av[k]) == -2147483645 || av[k][1] != '\0' || (av[k][0] >= '0' && av[k][0] <= '9'))
+			return (-1);
 		s->a[j] = ft_atoi(av[k]);
 		++j;
 		++k;
@@ -89,8 +93,6 @@ int		checkline(char *line, t_stack *s)
 
 void	checker(char **av)
 {
-	int		ret;
-	int		check;
 	char	*line;
 	t_stack	*s;
 
@@ -98,26 +100,21 @@ void	checker(char **av)
 	ft_bzero(s, sizeof(t_stack));
 	if ((set_stack(s, av)) == -1)
 	{
-		ft_putstr("KO\n");
+		ft_putstr("Error\n");
 		return ;
 	}
-	ret = 1;
-	check = 1;
-	while (ret == 1 && check != 0)
+	while (s->ret == 1 && s->check != 0)
 	{
-		ret = get_next_line(0, &line);
+		s->ret = get_next_line(0, &line);
 		if (line[0] != '\0')
 		{
-			check = checkline(line, s);
+			s->check = checkline(line, s);
 			free(line);
-			display_stacks(s);
 		}
 	}
 	if (checktab(s))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	free(s->a);
-	free(s->b);
-	free(s);
+	free_stack(s);
 }

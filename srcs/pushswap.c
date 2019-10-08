@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 11:03:04 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/27 18:39:12 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:23:59 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int		push_swap(char **av)
 		push_swap_three(s);
 	else
 		split_stack(s);
-//	display_stacks(s);
 	free(s->a);
 	free(s->b);
 	free(s);

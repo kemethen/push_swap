@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:09:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/27 18:39:34 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:22:53 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fill_a(t_stack *s)
 		s->a[i] = s->a[i - 1];
 		--i;
 	}
-	s->a[i] = tmp;  
+	s->a[i] = tmp;
 }
 
 void	fill_b(t_stack *s)

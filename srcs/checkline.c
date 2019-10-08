@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:45:19 by kemethen          #+#    #+#             */
-/*   Updated: 2019/08/27 18:39:32 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:08:18 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	checkline2(char *line, t_stack *s)
 		reverse_rotate_a(s);
 	else if (!(ft_strcmp(line, "rrb")) && s->tabsize_b > 0)
 		reverse_rotate_b(s);
-	else if (!(ft_strcmp(line, "rrr"))) 
+	else if (!(ft_strcmp(line, "rrr")))
 		reverse_rotate_both(s);
 }
 

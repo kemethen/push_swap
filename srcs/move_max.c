@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:09:44 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/02 17:02:19 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:16:53 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,6 @@ int		last_three(t_stack *s)
 	return (z);
 }
 
-void	to_bottom_max(t_stack *s, int max)
-{
-	//display_stacks(s);
-	while (max != s->b[0])
-	{		
-		reverse_rotate_b(s);
-	//	display_stacks(s);
-	}
-	push_a(s);
-}
-
-void	to_top_max(t_stack *s, int max)
-{
-	//display_stacks(s);
-	while (max != s->b[0])
-	{		
-		rotate_b(s);
-	//	display_stacks(s);
-	}
-	push_a(s);
-}
-
 int		bot_push(int *tab, int size, int med)
 {
 	int		i;
@@ -84,5 +62,5 @@ int		bot_push(int *tab, int size, int med)
 	i = size - 1;
 	while (tab[i] >= med)
 		--i;
-	return (tab[i]);
+	return (size - i);
 }
