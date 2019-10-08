@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/08 16:54:21 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/08 17:10:42 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		set_stack(t_stack *s, char **av)
 		return (-1);
 	while (j < i)
 	{
-		if (ft_atoi(av[k]) == -2147483645 || av[k][1] != '\0' || (av[k][0] >= '0' && av[k][0] <= '9'))
+		if (ft_atoi(av[k]) == -2147483645)
 			return (-1);
 		s->a[j] = ft_atoi(av[k]);
 		++j;

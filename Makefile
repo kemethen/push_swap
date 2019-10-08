@@ -6,7 +6,7 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/10/08 16:18:08 by kemethen         ###   ########.fr        #
+#    Updated: 2019/10/08 17:10:38 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,22 +27,22 @@ SRC		= checker.c \
 		get_next_line.c \
 		main.c \
 		move_max.c \
-		move_median.c \
 		move.c \
 		push.c \
-		rotate.c 
+		rotate.c \
+		sort.c
 
 SRC2	= checker.c \
 		checkline.c \
 		free_stack.c \
 		get_next_line.c \
-		median.c \
 		move_max.c \
-		move_median.c \
 		move.c \
 		push.c \
 		pushswap.c \
-		rotate.c
+		rotate.c \
+		sort.c \
+		split_stack.c
 
 CFLAGS += -I$(INCDIR)
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
