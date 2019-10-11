@@ -6,7 +6,7 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/10/08 17:10:38 by kemethen         ###   ########.fr        #
+#    Updated: 2019/10/11 19:23:50 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,20 +21,18 @@ INCDIR	= $(LIBDIR)
 
 HEAD	= $(SRCDIR)/push_swap.h
 
-SRC		= checker.c \
+SRC		=	checker.c \
 		checkline.c \
-		free_stack.c \
 		get_next_line.c \
 		main.c \
 		move_max.c \
 		move.c \
 		push.c \
-		rotate.c \
-		sort.c
+		rotate.c
 
-SRC2	= checker.c \
+SRC2	= big_list.c \
+		checker.c \
 		checkline.c \
-		free_stack.c \
 		get_next_line.c \
 		move_max.c \
 		move.c \
@@ -42,7 +40,7 @@ SRC2	= checker.c \
 		pushswap.c \
 		rotate.c \
 		sort.c \
-		split_stack.c
+		split_stack.c 
 
 CFLAGS += -I$(INCDIR)
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:18:29 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/08 14:38:24 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:24:05 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,17 @@ void	reverse_rotate_b(t_stack *s)
 
 	i = s->tabsize_b - 1;
 	tmp = s->b[i];
-	while (i > 0)
+	if (s->tabsize_b > 0)
 	{
-		s->b[i] = s->b[i - 1];
-		--i;
+		while (i > 0)
+		{
+			s->b[i] = s->b[i - 1];
+			--i;
+		}
+		s->b[0] = tmp;
+		if (s->write == 1)
+			ft_putstr("rrb\n");
 	}
-	s->b[0] = tmp;
-	if (s->write == 1)
-		ft_putstr("rrb\n");
 }
 
 void	rotate_a(t_stack *s)
@@ -70,12 +73,15 @@ void	rotate_b(t_stack *s)
 
 	tmp = s->b[0];
 	i = 0;
-	while (i < s->tabsize_b)
+	if (s->tabsize_b > 0)
 	{
-		s->b[i] = s->b[i + 1];
-		i++;
+		while (i < s->tabsize_b)
+		{
+			s->b[i] = s->b[i + 1];
+			i++;
+		}
+		s->b[i - 1] = tmp;
+		if (s->write == 1 && s->both == 0)
+			ft_putstr("rb\n");
 	}
-	s->b[i - 1] = tmp;
-	if (s->write == 1 && s->both == 0)
-		ft_putstr("rb\n");
 }

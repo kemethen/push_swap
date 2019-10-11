@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/08 17:10:42 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:23:56 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ void	swap_a(t_stack *s)
 int		checkline(char *line, t_stack *s)
 {
 	if (ft_strlen(line) <= 1 || ft_strlen(line) > 3)
-		return (0);
+	{
+		free_stack(s);
+		return (-1);
+	}
 	else if (!(ft_strcmp(line, "sa")))
 		swap_a(s);
 	else if (!(ft_strcmp(line, "sb")) && s->tabsize_b > 0)
@@ -83,15 +86,15 @@ int		checkline(char *line, t_stack *s)
 		push_a(s);
 	else if (!(ft_strcmp(line, "pb")) && s->tabsize_a > 0)
 		push_b(s);
-	else if (!(ft_strcmp(line, "ra")))
-		rotate_a(s);
-	else if (!(ft_strcmp(line, "rb")))
-		rotate_b(s);
-	checkline2(line, s);
+	else if ((checkline2(line, s)) == -1)
+	{
+		free_stack(s);
+		return (-1);
+	}
 	return (1);
 }
 
-void	checker(char **av)
+int		checker(char **av)
 {
 	char	*line;
 	t_stack	*s;
@@ -99,22 +102,23 @@ void	checker(char **av)
 	s = ft_memalloc(sizeof(t_stack));
 	ft_bzero(s, sizeof(t_stack));
 	if ((set_stack(s, av)) == -1)
-	{
-		ft_putstr("Error\n");
-		return ;
-	}
+		return (-1);
+	if ((checkdupe(s)) == -1)
+		return (-1);
 	while (s->ret == 1 && s->check != 0)
 	{
 		s->ret = get_next_line(0, &line);
 		if (line[0] != '\0')
 		{
-			s->check = checkline(line, s);
+			if ((checkline(line, s)) == -1)
+				return (-1);
 			free(line);
 		}
 	}
-	if (checktab(s))
+	if ((checktab(s)) == 1)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
 	free_stack(s);
+	return (0);
 }

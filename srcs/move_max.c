@@ -6,26 +6,49 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:09:44 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/08 16:16:53 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:23:59 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		number_min(int *tab, int size)
+int		checkdupe(t_stack *s)
 {
-	int		x;
-	int		i;
+	size_t	i;
+	int		tmp;
+	int		*tab;
 
-	x = tab[0];
-	i = 0;
-	while (i < size)
+	i = 1;
+	tmp = 0;
+	tab = ft_tabdupint(s->a, s->tabsize_a);
+	while (i++ < s->tabsize_a)
 	{
-		if (x > tab[i])
-			x = tab[i];
-		++i;
+		if (tab[i - 1] > tab[i])
+		{
+			tmp = tab[i - 1];
+			tab[i - 1] = tab[i];
+			tab[i] = tmp;
+			i = 1;
+		}
 	}
-	return (x);
+	i = 0;
+	while (i++ < s->tabsize_a)
+	{
+		if (tab[i] == tab[i + 1])
+		{
+			free(tab);
+			return (-1);
+		}
+	}
+	free(tab);
+	return (1);
+}
+
+void	free_stack(t_stack *s)
+{
+	free(s->a);
+	free(s->b);
+	free(s);
 }
 
 int		last_three(t_stack *s)

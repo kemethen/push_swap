@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:45:19 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/08 16:08:18 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:23:57 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,37 @@ void	swap_both(t_stack *s)
 	s->both = 0;
 }
 
-void	checkline2(char *line, t_stack *s)
+int		checkline2(char *line, t_stack *s)
 {
-	if (!(ft_strcmp(line, "rr")))
+	if (!(ft_strcmp(line, "ra")))
+		rotate_a(s);
+	else if (!(ft_strcmp(line, "rb")))
+		rotate_b(s);
+	else if (!(ft_strcmp(line, "rr")))
 		rotate_both(s);
-	else if (!(ft_strcmp(line, "rra")) && s->tabsize_a > 0)
+	else if (!(ft_strcmp(line, "rra")))
 		reverse_rotate_a(s);
-	else if (!(ft_strcmp(line, "rrb")) && s->tabsize_b > 0)
+	else if (!(ft_strcmp(line, "rrb")))
 		reverse_rotate_b(s);
 	else if (!(ft_strcmp(line, "rrr")))
 		reverse_rotate_both(s);
+	else
+		return (-1);
+	return (1);
 }
 
 int		checktab(t_stack *s)
 {
 	size_t	i;
 
-	i = 1;
-	if (s->tabsize_b == 0)
+	i = 0;
+	if (s->tabsize_b != 0)
+		return (-1);
+	while (i < s->tabsize_a - 1)
 	{
-		while (s->a[i - 1] < s->a[i] && i < s->tabsize_a)
-			i++;
+		if (s->a[i] > s->a[i + 1])
+			return (-1);
+		i++;
 	}
-	if (i == s->tabsize_a && s->tabsize_b == 0)
-		return (1);
-	return (0);
+	return (1);
 }
