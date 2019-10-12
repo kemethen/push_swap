@@ -6,11 +6,26 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 15:09:44 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/11 19:23:59 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:58:29 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		check_tab(t_stack *s, size_t i, int *tab)
+{
+	i = 0;
+	while (i < s->tabsize_a - 1)
+	{
+		if (tab[i] == tab[i + 1])
+		{
+			free(tab);
+			return (-1);
+		}
+		++i;
+	}
+	return (1);
+}
 
 int		checkdupe(t_stack *s)
 {
@@ -18,28 +33,22 @@ int		checkdupe(t_stack *s)
 	int		tmp;
 	int		*tab;
 
-	i = 1;
+	i = 0;
 	tmp = 0;
 	tab = ft_tabdupint(s->a, s->tabsize_a);
-	while (i++ < s->tabsize_a)
+	while (i < s->tabsize_a - 1)
 	{
-		if (tab[i - 1] > tab[i])
+		if (tab[i] > tab[i + 1])
 		{
-			tmp = tab[i - 1];
-			tab[i - 1] = tab[i];
-			tab[i] = tmp;
-			i = 1;
+			tmp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp;
+			i = -1;
 		}
+		i++;
 	}
-	i = 0;
-	while (i++ < s->tabsize_a)
-	{
-		if (tab[i] == tab[i + 1])
-		{
-			free(tab);
-			return (-1);
-		}
-	}
+	if ((check_tab(s, i, tab)) == -1)
+		return (-1);
 	free(tab);
 	return (1);
 }

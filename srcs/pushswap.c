@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 11:03:04 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/11 19:24:03 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/12 16:16:32 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	push_swap_two(t_stack *s)
 		swap_a(s);
 }
 
-int		push_swap(char **av)
+int		push_swap(int ac, char **av)
 {
 	t_stack	*s;
 
 	s = ft_memalloc(sizeof(t_stack));
 	ft_bzero(s, sizeof(t_stack));
-	if ((set_stack(s, av)) == -1)
+	if ((set_stack(s, ac, av)) == -1)
 		return (-1);
 	s->push_swap = 1;
 	if ((checktab(s)) == 1)
@@ -62,9 +62,11 @@ int		push_swap(char **av)
 		push_swap_two(s);
 	else if (s->tabsize_a == 3)
 		push_swap_three(s);
-	else if (s->tabsize_a > 3 && s->tabsize_a < 120)
+	else if (s->tabsize_a == 4)
+		push_swap_four(s);
+	else if (s->tabsize_a < 120)
 		split_stack(s);
-	else
+	else if (s->tabsize_a >= 120)
 		big_list(s);
 	free_stack(s);
 	return (0);
@@ -74,7 +76,7 @@ int		main(int ac, char **av)
 {
 	if (ac < 1)
 		return (-1);
-	if ((push_swap(av)) == -1)
+	if ((push_swap(ac, av)) == -1)
 		ft_putstr("Error\n");
 	return (0);
 }

@@ -6,11 +6,19 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 17:41:09 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/11 19:23:54 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:44:00 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	check_next(t_stack *s)
+{
+	if (s->top > s->bot)
+		reverse_rotate_a(s);
+	else
+		rotate_a(s);
+}
 
 int		dupstack(t_stack *s, int size)
 {
@@ -83,12 +91,7 @@ void	big_list(t_stack *s)
 			s->top = top_push(s->a, med);
 			s->bot = bot_push(s->a, s->tabsize_a, med);
 			while (s->a[0] > med && tmp2 > 0)
-			{
-				if (s->top > s->bot)
-					reverse_rotate_a(s);
-				else
-					rotate_a(s);
-			}
+				check_next(s);
 		}
 		s->cnt++;
 	}

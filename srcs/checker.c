@@ -6,31 +6,29 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/11 19:23:56 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:56:09 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		set_stack(t_stack *s, char **av)
+int		set_stack(t_stack *s, int ac, char **av)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	int		j;
+	int		k;
 
-	i = ft_tabsize(av) - 1;
 	j = 0;
 	k = 1;
-	if (!(s->a = (int *)malloc(sizeof(int) * i)))
+	if (!(s->a = (int *)malloc(sizeof(int) * (ac - 1))))
 		return (-1);
-	s->tabsize_a = i;
+	s->tabsize_a = ac - 1;
 	s->tabsize_b = 0;
 	s->write = 0;
 	s->ret = 1;
 	s->check = 1;
-	if (!(s->b = (int *)malloc(sizeof(int) * i)))
+	if (!(s->b = (int *)malloc(sizeof(int) * (ac - 1))))
 		return (-1);
-	while (j < i)
+	while (j < ac - 1)
 	{
 		if (ft_atoi(av[k]) == -2147483645)
 			return (-1);
@@ -94,14 +92,14 @@ int		checkline(char *line, t_stack *s)
 	return (1);
 }
 
-int		checker(char **av)
+int		checker(int ac, char **av)
 {
 	char	*line;
 	t_stack	*s;
 
 	s = ft_memalloc(sizeof(t_stack));
 	ft_bzero(s, sizeof(t_stack));
-	if ((set_stack(s, av)) == -1)
+	if ((set_stack(s, ac, av)) == -1)
 		return (-1);
 	if ((checkdupe(s)) == -1)
 		return (-1);

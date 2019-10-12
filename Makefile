@@ -6,7 +6,7 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/10/11 19:23:50 by kemethen         ###   ########.fr        #
+#    Updated: 2019/10/12 18:05:27 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC		=	checker.c \
 		get_next_line.c \
 		main.c \
 		move_max.c \
-		move.c \
 		push.c \
 		rotate.c
 
@@ -95,4 +94,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re checker push_swap $(LIB)
+.PHONY: all clean fclean re
