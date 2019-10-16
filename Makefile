@@ -6,44 +6,45 @@
 #    By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 12:14:06 by kemethen          #+#    #+#              #
-#    Updated: 2019/10/12 18:05:27 by kemethen         ###   ########.fr        #
+#    Updated: 2019/10/15 18:25:05 by kemethen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= checker
 NAME2	= push_swap
 CC		= gcc
-CFLAGS += -Wall -Wextra -Werror
-SRCDIR	= srcs
-OBJDIR	= obj
+CFLAGS  = -Wall -Wextra -Werror -g3
+SRCDIR	= srcs_chk
+SRCDIR2 = srcs_pshswp
+OBJDIR	= obj_chk
+OBJDIR2	= obj_pshswp
 LIBDIR	= libft
 INCDIR	= $(LIBDIR)
 
-HEAD	= $(SRCDIR)/push_swap.h
+HEAD	= $(SRCDIR)/checker.h
+HEAD2	= $(SRCDIR2)/push_swap.h
 
 SRC		=	checker.c \
 		checkline.c \
-		get_next_line.c \
 		main.c \
 		move_max.c \
 		push.c \
 		rotate.c
 
 SRC2	= big_list.c \
-		checker.c \
-		checkline.c \
-		get_next_line.c \
-		move_max.c \
+		checker_p.c \
+		checkline_p.c \
+		move_max_p.c \
 		move.c \
-		push.c \
+		push_p.c \
 		pushswap.c \
-		rotate.c \
+		rotate_p.c \
 		sort.c \
 		split_stack.c 
 
 CFLAGS += -I$(INCDIR)
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
-OBJ2	= $(addprefix $(OBJDIR)/,$(SRC2:.c=.o))
+OBJ2	= $(addprefix $(OBJDIR2)/,$(SRC2:.c=.o))
 LIB		= $(LIBDIR)/libft.a
 
 GREEN	= \033[1;32m
@@ -53,11 +54,7 @@ YELLOW	= \033[1;33m
 BLUE	= \033[1;36m
 WHITE	= \033[1;37m
 
-all: $(NAME) $(NAME2)
-
-checker: $(NAME)
-
-push_swap: $(NAME2)
+all: checker push_swap
 
 $(NAME): $(LIB) $(OBJ)
 	@echo "\n$(GREEN)Compiling\t$(YELLOW)$@ $(WHITE)with $^"
@@ -70,7 +67,7 @@ $(NAME2): $(LIB) $(OBJ2)
 	@echo "$@  \t[$(GREEN)✓$(WHITE)]"
 
 $(LIB):
-	@make -j3 -C $(LIBDIR)
+	@make -C $(LIBDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 	@echo "$(PURPLE)Updating\t$(WHITE)$@"
@@ -82,10 +79,20 @@ $(OBJDIR):
 	@echo "$(GREEN)Creating\t$(WHITE)directory $(BLUE)'$@'\n"
 	@mkdir $@
 
+$(OBJDIR2)/%.o: $(SRCDIR2)/%.c $(HEAD2)
+	@echo "$(PURPLE)Updating\t$(WHITE)$@"
+	@$(CC) $(CFLAGS) -o $@ -c $<
+
+$(OBJ2): | $(OBJDIR2)
+
+$(OBJDIR2):
+	@echo "$(GREEN)Creating\t$(WHITE)directory $(BLUE)'$@'\n"
+	@mkdir $@
+
 clean:
 	@make -C $(LIBDIR) clean
-	@echo "$(RED)Deleting\t$(WHITE)directory $(BLUE)'$(OBJDIR)"
-	@rm -rf $(OBJDIR)
+	@echo "$(RED)Deleting\t$(WHITE)directory $(BLUE)'$(OBJDIR)' & '$(OBJDIR2)'"
+	@rm -rf $(OBJDIR) $(OBJDIR2)
 
 fclean: clean
 	@make -C $(LIBDIR) fclean
