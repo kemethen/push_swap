@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:15:23 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/15 12:30:42 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/16 17:20:57 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_stack
 	int			cnt;
 	int			top;
 	int			bot;
+	size_t		i;
 }				t_stack;
 
 void			display_stacks(t_stack *s);
@@ -48,6 +49,7 @@ void			rotate_b_p(t_stack *s);
 void			reverse_rotate_a_p(t_stack *s);
 void			reverse_rotate_b_p(t_stack *s);
 void			split_stack(t_stack *s);
+void			split_stack2(t_stack *s, int top, int bot, int med);
 int				set_stack_p(t_stack *s, int ac, char **av);
 int				push_swap_p(int ac, char **av);
 void			sort_a_p(t_stack *s);

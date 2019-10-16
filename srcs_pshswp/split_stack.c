@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 16:55:41 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/15 13:00:30 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/16 17:21:22 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,28 +101,28 @@ void	sort_b(t_stack *s, int top, int bot, int med)
 void	split_stack(t_stack *s)
 {
 	int		med;
-	int		top;
-	int		bot;
 
-	s->max = last_three_p(s);
-	while (s->tabsize_a > 3)
+	if (s->tabsize_a % 2 == 0)
+		s->i = s->tabsize_a / 2;
+	else
+		s->i = s->tabsize_a / 2 + 1;
+	med = median(s->a, s->tabsize_a);
+	while (s->i < s->tabsize_a)
 	{
-		med = median(s->a, s->tabsize_a);
-		if (s->a[0] < med && s->a[0] < s->max)
+		if (s->a[0] < med)
 		{
 			push_b_p(s);
-			sort_b(s, top, bot, med);
+			sort_b(s, s->top, s->bot, med);
 		}
-		top = top_push(s->a, med);
-		bot = bot_push_p(s->a, s->tabsize_a, med);
-		while (s->a[0] >= med)
+		s->top = top_push(s->a, med);
+		s->bot = bot_push_p(s->a, s->tabsize_a, med);
+		while (s->a[0] >= med && s->i < s->tabsize_a)
 		{
-			if (top > bot)
+			if (s->top > s->bot)
 				reverse_rotate_a_p(s);
 			else
 				rotate_a_p(s);
 		}
 	}
-	push_swap_three(s);
-	sort(s);
+	split_stack2(s, s->top, s->bot, med);
 }

@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:18:29 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/13 14:46:45 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/16 17:18:48 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,26 @@ void	rotate_b_p(t_stack *s)
 	}
 	if (s->visual == 1 && s->both == 0)
 		display_stacks(s);
+}
+
+void	split_stack2(t_stack *s, int top, int bot, int med)
+{
+	s->max = last_three_p(s);
+	while (s->tabsize_a > 3)
+	{
+		med = median(s->a, s->tabsize_a);
+		if (s->a[0] < med && s->a[0] < s->max)
+			push_b_p(s);
+		top = top_push(s->a, med);
+		bot = bot_push_p(s->a, s->tabsize_a, med);
+		while (s->a[0] >= med)
+		{
+			if (top > bot)
+				reverse_rotate_a_p(s);
+			else
+				rotate_a_p(s);
+		}
+	}
+	push_swap_three(s);
+	sort(s);
 }
