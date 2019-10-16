@@ -6,7 +6,7 @@
 /*   By: kemethen <kemethen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 16:58:27 by kemethen          #+#    #+#             */
-/*   Updated: 2019/10/15 12:20:52 by kemethen         ###   ########.fr       */
+/*   Updated: 2019/10/16 17:05:36 by kemethen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		checkline(char *line, t_stack *s)
 	if (ft_strlen(line) <= 1 || ft_strlen(line) > 3)
 	{
 		free_stack(s);
+		free(line);
 		return (-1);
 	}
 	else if (!(ft_strcmp(line, "sa")))
@@ -83,6 +84,7 @@ int		checkline(char *line, t_stack *s)
 	else if ((checkline2(line, s)) == -1)
 	{
 		free_stack(s);
+		free(line);
 		return (-1);
 	}
 	return (1);
